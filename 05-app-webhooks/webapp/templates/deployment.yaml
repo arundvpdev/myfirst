@@ -16,6 +16,7 @@ spec:
       {{- with .Values.podAnnotations }}
       annotations:
        link.argocd.argoproj.io/external-link: http://labs.sass.ro:{{ .Values.service.externalPort }}
+       gitops.training.sass.ro/appVersion: {{ .Chart.AppVersion | quote}}
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
