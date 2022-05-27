@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp1
+spec:
+ replicas: 3
+ selector:
+  matchLabels:
+   app: myapp1
+ template:
+  metadata:
+   labels:
+    app: myapp1
+    training: gitops-basic
+  spec:
+   containers:
+   - name: nginx
+     image: nginx:latest
+     volumeMounts:
+     - name: config-volume
+       mountPath: /usr/share/nginx/html
+   volumes:
+   - name: config-volume
+     configMap:
+      name: myapp1
